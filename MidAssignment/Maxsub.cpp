@@ -51,14 +51,14 @@ MaxSub maxSub(const vector<int> &arr, int l, int r)
         return res;
     }
     int mid = (l + r) / 2;
-    MaxSub left = maxSub(arr, l, mid);
-    MaxSub right = maxSub(arr, mid + 1, r);
+    MaxSub l = maxSub(arr, l, mid);
+    MaxSub r = maxSub(arr, mid + 1, r);
     MaxSub cross = mcsa(arr, l, mid, r);
 
-    if (left.sum >= right.sum && left.sum >= cross.sum)
-        return left;
-    else if (right.sum >= left.sum && right.sum >= cross.sum)
-        return right;
+    if (l.sum >= r.sum && l.sum >= cross.sum)
+        return l;
+    else if (r.sum >= l.sum && r.sum >= cross.sum)
+        return r;
     else
         return cross;
 }
