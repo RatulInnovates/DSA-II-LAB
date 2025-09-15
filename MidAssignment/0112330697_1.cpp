@@ -55,13 +55,13 @@ MaxSub longestProfit(vector<int> arr, int l, int r)
             return MaxSub(0, l, r);
     }
     int mid = (l + r) / 2;
-    MaxSub l = longestProfit(arr, l, mid);
-    MaxSub r = longestProfit(arr, mid + 1, r);
+    MaxSub left = longestProfit(arr, l, mid);
+    MaxSub right = longestProfit(arr, mid + 1, r);
     MaxSub cross = mcsa(arr, l, r);
-    if (l.months >= r.months && l.months >= cross.months)
-        return l;
-    else if (r.months >= l.months && r.months >= cross.months)
-        return r;
+    if (left.months >= right.months && left.months >= cross.months)
+        return left;
+    else if (right.months >= left.months && right.months >= cross.months)
+        return right;
     else
         return cross;
 }
